@@ -90,21 +90,15 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Reconnect AI - FastAPI (FAISS)")
 
-# ------------------------------------------------------------------
 # App-level configuration
-# ------------------------------------------------------------------
 SERVICE_API_KEY = os.getenv("SERVICE_API_KEY", "our-secret-key")
 MANAGER_USER = "manager"
 MANAGER_PASS = "password"
 
-# ------------------------------------------------------------------
 # Security Scheme for Swagger UI
-# ------------------------------------------------------------------
 security = HTTPBearer()  # enables "Authorize" button automatically
 
-# ------------------------------------------------------------------
 # Routes
-# ------------------------------------------------------------------
 @app.post("/events/guest-checkout", status_code=202)
 def guest_checkout(event: CheckoutEvent, x_api_key: str = Header(...)):
     if x_api_key != SERVICE_API_KEY:
@@ -133,9 +127,7 @@ def token(form_data: OAuth2PasswordRequestForm = Depends()):
     raise HTTPException(status_code=401, detail="Bad credentials")
 
 
-# ------------------------------------------------------------------
-# Authentication Dependency (with proper header alias)
-# ------------------------------------------------------------------
+# Authentication Dependency 
 def get_current_user(authorization: str = Header(..., alias="Authorization")):
     if not authorization.startswith("Bearer "):
         raise HTTPException(status_code=401, detail="Invalid auth header")
@@ -144,9 +136,7 @@ def get_current_user(authorization: str = Header(..., alias="Authorization")):
     return payload
 
 
-# ------------------------------------------------------------------
 # Guest Profile Endpoint (protected)
-# ------------------------------------------------------------------
 @app.get("/guest-profile/{guest_id}")
 def guest_profile(
     guest_id: str,

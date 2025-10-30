@@ -1,4 +1,4 @@
-# Run this to rebuild FAISS index from embeddings stored in Postgres
+
 from .db import SessionLocal
 from .models import Stay
 from .faiss_index import get_faiss_index

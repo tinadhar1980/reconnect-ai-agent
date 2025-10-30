@@ -11,7 +11,7 @@ class Guest(Base):
     average_sentiment = Column(Float, default=0.0)
     stays_count = Column(Integer, default=0)
     last_stay_date = Column(DateTime, nullable=True)
-    extra_metadata = Column(JSON, default={})  # ✅ renamed
+    extra_metadata = Column(JSON, default={})  
 
     stays = relationship("Stay", back_populates="guest")
 
