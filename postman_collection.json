@@ -1,0 +1,76 @@
+{
+  "info": {
+    "name": "ReconnectAI-FAISS",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Token",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "username",
+              "value": "manager"
+            },
+            {
+              "key": "password",
+              "value": "password"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8000/token",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "token"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Checkout Event",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-API-KEY",
+            "value": "our-secret-key"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"guest_id\": \"test_user_1\", \"stay_id\": \"stay_1\", \"check_out_date\": \"2025-10-29T10:00:00\", \"total_spend\": 200.0, \"review_text\": \"Great stay!\"}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/events/guest-checkout",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "events",
+            "guest-checkout"
+          ]
+        }
+      }
+    }
+  ]
+}
